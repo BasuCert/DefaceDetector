@@ -1,16 +1,20 @@
 import os
 import yaml
 
+curfilePath = os.path.abspath(__file__)
+curDir = os.path.abspath(os.path.join(curfilePath, os.pardir))
 
-def get_config(section):
+
+def get_config(term, section="general"):
     try:
-        # TODO must impl cli script to load dev and pro separately
-        conf_file = os.path.dirname('..') + 'config/config-dev.yaml'
+        conf_file = os.path.abspath(os.path.join(curDir, os.pardir)) + '/config.yaml'
         with open(conf_file, 'r') as ymlfile:
             cfg = yaml.load(ymlfile)
     except FileNotFoundError:
+        print("file not found")
         return {}
     try:
-        return cfg[section]
+        return cfg.get(section, {}).get(term, {})
     except KeyError:
+        print("key not found")
         return {}

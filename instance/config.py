@@ -1,6 +1,7 @@
 import os
 from app.utils import get_config
 
+
 class Config(object):
     """Parent configuration class."""
     DEBUG = get_config('DEBUG')
