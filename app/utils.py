@@ -1,13 +1,16 @@
 import os
 import yaml
 
-curfilePath = os.path.abspath(__file__)
-curDir = os.path.abspath(os.path.join(curfilePath, os.pardir))
+
+def get_parent_path(file_path):
+    curfilePath = os.path.abspath(file_path)
+    curDir = os.path.abspath(os.path.join(curfilePath, os.pardir))
+    return os.path.abspath(os.path.join(curDir, os.pardir))
 
 
 def get_config(term, section="general"):
     try:
-        conf_file = os.path.abspath(os.path.join(curDir, os.pardir)) + '/config.yaml'
+        conf_file = get_parent_path(__file__) + '/config.yaml'
         with open(conf_file, 'r') as ymlfile:
             cfg = yaml.load(ymlfile)
     except FileNotFoundError:
