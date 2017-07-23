@@ -1,12 +1,12 @@
 import os
-
+from app.utils import get_config
 
 class Config(object):
     """Parent configuration class."""
-    DEBUG = False
-    CSRF_ENABLED = True
-    SECRET = os.getenv('SECRET')
-    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL')
+    DEBUG = get_config('DEBUG')
+    CSRF_ENABLED = get_config('CSRF_ENABLED')
+    SECRET = get_config('SECRET')
+    SQLALCHEMY_DATABASE_URI = get_config('DATABASE_URL')
 
 
 class DevelopmentConfig(Config):
