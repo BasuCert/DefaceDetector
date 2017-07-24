@@ -101,3 +101,6 @@ ENV/
 
 # visual studio code 
 .vscode/
+
+# DB
+*.sqlite3
